@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserForm } from "../components/styles/Form";
 import axios from "axios";
@@ -9,6 +9,12 @@ function Signup() {
     const [password, setPassword] = useState('');
     const [isOk, setIsok] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('accesstoken')) {
+            navigate('/todo')
+        }
+    }, [])
 
     const onEmailChange = (e) => {
         setEmail(e.currentTarget.value);

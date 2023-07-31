@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UserForm } from "../components/styles/Form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('accesstoken')) {
+            navigate('/todo')
+        }
+    }, [])
 
     const onSubmit = (e) => {
 		e.preventDefault();
@@ -21,6 +29,7 @@ function Login() {
             })
                 .then((response) => {
                     localStorage.setItem('access_token', response.data.access_token);
+                    navigate('/todo');
                 });
         }
     }
