@@ -13,7 +13,7 @@ function Login() {
             console.log(localStorage.getItem('access_token'));
             navigate('/todo')
         }
-    }, [])
+    }, [navigate])
 
     const onSubmit = (e) => {
 		e.preventDefault();

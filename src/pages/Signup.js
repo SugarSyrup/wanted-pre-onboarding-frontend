@@ -14,7 +14,7 @@ function Signup() {
         if(localStorage.getItem('access_token')) {
             navigate('/todo')
         }
-    }, [])
+    }, [navigate])
 
     const onEmailChange = (e) => {
         setEmail(e.currentTarget.value);

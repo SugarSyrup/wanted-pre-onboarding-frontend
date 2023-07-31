@@ -19,7 +19,7 @@ function Todo() {
             .then((response) => {
                 setTodos(response.data);
             })
-    }, [])
+    }, [navigate])
 
     const onSubmit = (e) => {
         e.preventDefault();
