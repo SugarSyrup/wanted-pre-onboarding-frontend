@@ -8,7 +8,9 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('accesstoken')) {
+        console.log(localStorage.getItem('access_token'));
+        if(localStorage.getItem('access_token')) {
+            console.log(localStorage.getItem('access_token'));
             navigate('/todo')
         }
     }, [])

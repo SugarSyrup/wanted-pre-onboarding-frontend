@@ -11,7 +11,7 @@ function Signup() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('accesstoken')) {
+        if(localStorage.getItem('access_token')) {
             navigate('/todo')
         }
     }, [])
