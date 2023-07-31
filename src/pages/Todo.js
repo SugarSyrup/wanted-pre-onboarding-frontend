@@ -47,9 +47,23 @@ function Todo() {
                         return (
                             <li key={todo.id}>
                                 <label>
-                                    <input type="checkbox" checked={todo.isCompleted}/>
+                                    <input type="checkbox" checked={todo.isCompleted} onChange={(e) => {
+                                        const access_token = localStorage.getItem('access_token');
+
+                                        axios.put(`https://www.pre-onboarding-selection-task.shop/todos/${todo.id}`, {
+                                            todo:todo.todo,
+                                            isCompleted:e.currentTarget.checked
+                                        }, {
+                                            headers: {Authorization : `Bearer ${access_token}`}
+                                        })
+                                            .then((response) => {
+                                                window.location.reload();
+                                            })
+                                    }}/>
                                     <span>{todo.todo}</span>
                                 </label>
+                                <button data-testid="modify-button">수정</button>
+                                <button data-testid="delete-button">삭제</button>
                             </li>
                         )
                     })
