@@ -12,4 +12,5 @@ $ npm install
 $ npm start
 ```
 
-### 데모 영상
+### 데모 영상 (배포 링크)
+[https://wanted-preassignment.netlify.app/](https://wanted-preassignment.netlify.app/)
