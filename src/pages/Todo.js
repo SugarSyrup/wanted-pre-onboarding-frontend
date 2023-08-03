@@ -31,7 +31,7 @@ function Todo() {
             headers: {Authorization : `Bearer ${access_token}`}
         })
             .then((response) => {
-                window.location.reload();
+                navigate('/todo');
             })
     }
     
