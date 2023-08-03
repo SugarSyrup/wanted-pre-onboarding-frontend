@@ -24,6 +24,7 @@ function Todo() {
     const onSubmit = (e) => {
         e.preventDefault();
         const access_token = localStorage.getItem('access_token');
+        setNewtodo('');
 
         axios.post('https://www.pre-onboarding-selection-task.shop/todos', {
             todo: newTodo
@@ -31,7 +32,6 @@ function Todo() {
             headers: {Authorization : `Bearer ${access_token}`}
         })
             .then((response) => {
-                navigate(0);
             })
     }
     
