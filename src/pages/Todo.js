@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TodoObj from "./TodoObj";
+import { Link, useNavigate } from "react-router-dom";
+import TodoObj from "../components/TodoObj";
 
 function Todo() {
     const navigate = useNavigate();
@@ -36,9 +36,14 @@ function Todo() {
     }
     
     return(
-        <div>
+        <div style={{width:'500px', margin:'auto'}}>
+            <Link to="/" style={{textDecoration:'none', cursor:'pointer'}} onClick={() => {
+                localStorage.removeItem('access_token');
+            }}>
+                &larr; Go Back Home
+            </Link>
             <h1>Todos</h1>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} style={{marginBottom:'20px'}}>
                 <input data-testid="new-todo-input" type="text" onChange={(e) => {setNewtodo(e.currentTarget.value)}} name="newTodo"/>
                 <button data-testid="new-todo-add-button">추가</button>
             </form>

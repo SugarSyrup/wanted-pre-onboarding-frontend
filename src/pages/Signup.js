@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserForm } from "../components/styles/Form";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Signup() {
@@ -50,14 +51,20 @@ function Signup() {
     }
 
     return(
-        <UserForm onSubmit={onSubmit}>
-            <label>email</label>
-            <input data-testid="email-input" type="text" name="email" value={email} onChange={onEmailChange}/>
-            <label>password</label>
-            <input data-testid="password-input" type="password" name="password" value={password} onChange={onPasswordChange}/>
-            {error !== '' && <span>{error}</span>}
-            <button data-testid="signup-button" disabled={isOk}>회원가입</button>
-        </UserForm>
+        <div style={{margin:'auto', display:'flex', flexDirection:'column'}}>
+            <UserForm onSubmit={onSubmit}>
+                <h1 style={{marginTop:'-20px'}}>Sign up</h1>
+                <label>email</label>
+                <input data-testid="email-input" type="text" name="email" value={email} onChange={onEmailChange}/>
+                <label>password</label>
+                <input data-testid="password-input" type="password" name="password" value={password} onChange={onPasswordChange}/>
+                {error !== '' && <span>{error}</span>}
+                <button data-testid="signup-button" disabled={isOk}>회원가입</button>
+            </UserForm>
+            <Link to="/signin" style={{width:'100%', height:'80px', backgroundColor:'aliceblue', display:'flex', justifyContent:'center', alignItems:'center', borderRadius:'10px', color:'black', fontSize:'24px', fontWeight:'bolder',textDecoration:'none', cursor:'pointer', marginTop:'20px'}}>
+                Sign In &rarr;
+            </Link>
+        </div>
     )
 }
 
