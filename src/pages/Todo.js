@@ -7,19 +7,22 @@ function Todo() {
     const navigate = useNavigate();
     const [todos, setTodos] = useState([]);
     const [newTodo, setNewtodo] = useState('');
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         const access_token = localStorage.getItem('access_token');
         if(!access_token) {
             navigate('/signin')
         }
-        axios.get('https://www.pre-onboarding-selection-task.shop/todos', {
-            headers: {Authorization : `Bearer ${access_token}`}
-        })
-            .then((response) => {
-                setTodos(response.data);
+        else {
+            axios.get('https://www.pre-onboarding-selection-task.shop/todos', {
+                headers: {Authorization : `Bearer ${access_token}`}
             })
-    }, [navigate])
+                .then((response) => {
+                    setTodos(response.data);
+                })
+        }
+    }, [navigate, refresh])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +35,7 @@ function Todo() {
             headers: {Authorization : `Bearer ${access_token}`}
         })
             .then((response) => {
-                window.location.reload();
+                setRefresh(prev => !prev);
             })
     }
     
@@ -52,7 +55,7 @@ function Todo() {
                 {
                     todos.map((todo) => {
                         return (
-                            <TodoObj todo={todo}/>
+                            <TodoObj todo={todo} setRefresh={setRefresh}/>
                         )
                     })
                 }

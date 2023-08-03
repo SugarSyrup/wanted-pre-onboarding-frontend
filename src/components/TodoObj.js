@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-function TodoObj({todo}) {
+function TodoObj({todo, setRefresh}) {
     const access_token = localStorage.getItem('access_token');
     const [todoData, setTodoData] = useState(todo.todo);
     const [isUpdate, setIsUpdate] = useState(false);
@@ -27,7 +27,7 @@ function TodoObj({todo}) {
                                 }
                             )
                             .then((response) => {
-                                window.location.reload();
+                                setRefresh(prev => !prev);
                             });
                     }}
                 />
@@ -56,7 +56,8 @@ function TodoObj({todo}) {
                                     }
                                 )
                                 .then((response) => {
-                                    window.location.reload();
+                                    setRefresh(prev => !prev);
+                                    setIsUpdate(false);
                                 });
                         }}
                     >
@@ -94,7 +95,7 @@ function TodoObj({todo}) {
                                     }
                                 )
                                 .then((response) => {
-                                    window.location.reload();
+                                    setRefresh(prev => !prev);
                                 });
                         }}
                     >
